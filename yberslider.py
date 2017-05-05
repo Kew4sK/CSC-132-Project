@@ -1,18 +1,43 @@
 from Tkinter import *
+import time
+
+a = 0
+b = 0
 
 class Slider(Frame):
+    
     def __init__(self, master):
         Frame.__init__(self, master)
         self.master =  master
         self.grid
-    def setupGUI(self):
+        self.empty_spot = (4, 4)
+
+    def check(self):
+        if (a == 1 and b == 1):
+            print "finally"
+
+    def Set(self, z):
+        if (z == b1):
+            a += 1
+            return a
+            print a
+        if (z == b2):
+            b += 1
+            return b
+            print b
+
+    def setupGUI(self):            
+        global img1, img2, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b18, b19, b20, b21, b22, b23, b24, b25
+#imports images
         img1 = PhotoImage(file="test tile.gif")
-        b1 = Button(self.master, width=50, height=50, command=lambda : remove())
+        img2 = PhotoImage(file="test.gif")
+#Places the buttons in there spots on the grid
+        b1 = Button(self.master, width=50, height=50, command=lambda : self.Set(b1))
         b1.config(image=img1)
         b1.image = img1
         b1.grid(row=0, column=0)
         
-        b2 = Button(self.master, width=50, height=50)
+        b2 = Button(self.master, width=50, height=50, command=lambda : self.Set(b2))
         b2.config(image=img1)
         b2.image = img1
         b2.grid(row=1, column=0)
@@ -127,8 +152,15 @@ class Slider(Frame):
         b24.image = img1
         b24.grid(row=1, column=4)
 
-WIDTH = 275
-HEIGHT = 275
+        b25 = Button(self.master, width=50, height=50)
+        b25.config(image=img2)
+        b25.image = img1
+        b25.grid(row=4, column=4)      
+
+
+######################################################################################
+WIDTH = 280
+HEIGHT = 280
 window = Tk()
 window.geometry("{}x{}".format(WIDTH, HEIGHT))
 window.title("Slider Puzzle")
