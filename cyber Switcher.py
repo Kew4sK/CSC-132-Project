@@ -12,7 +12,22 @@ class Slider(Frame):
         print "nope"
         if (a == 1 and b == 1):
             print "finally"
-            b2.grid(row=5, column=0)
+            
+            aa = b1.grid_info()
+            row1 = aa["row"]
+            column1 = aa["column"]
+            
+            bb = b2.grid_info()
+            row2 = bb["row"]
+            column2 = bb["column"]
+            b1.grid(row=row2, column=column2)
+            b2.grid(row=row1, column=column1)
+            
+    def grid(self, z):
+        grid_info = z.grid_info()
+        print ("row:", grid_info["row"], "column:", grid_info["column"])
+        print grid_info["column"]
+
 # each of these (a through y) controll if a button was selected.
     def a(self, value):
         global a
@@ -29,6 +44,7 @@ class Slider(Frame):
 #imports images.
         img1 = PhotoImage(file="test tile.gif")
         img2 = PhotoImage(file="test.gif")
+
         #switch = PhotoImage(file="Switch.gif")
 #Places the buttons in there spots on the grid.
 #Each one needs to be assigned a command still.
@@ -135,10 +151,11 @@ class Slider(Frame):
         #b26 = Button(self.master, width=50, height=50, command=lambda : self.check())
         #b26.config(image=switch)
         #b26.grid(row=5, column=5)
+
         
 
 
-######################################################################################
+###################################################################################
 WIDTH = 280
 HEIGHT = 280
 window = Tk()
