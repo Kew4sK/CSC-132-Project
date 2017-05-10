@@ -1,33 +1,45 @@
+#####################################################
+#Team 3: Pete Mace, Conan Howard, Justin Turnbull
+# Date: 5/9/17
+# Purpose: The system that the teams will come enter 
+# the code they get from the puzzle into
+#####################################################
+
+#imports libraries neccesary
 import RPi.GPIO as GPIO
 from time import sleep
 import pygame
 
+#Set switches and leds to pins from left to right
 switches = [18, 23, 12, 21]
 leds = [5, 6, 19, 26]
 
+#set 
 GPIO.setmode(GPIO.BCM)
 
+#set inpiuts and outputs
 GPIO.setup(switches, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(leds, GPIO.OUT)
 
+#These variables form the toggle mode of each switch
 a = False
 b = False
 c = False
 d = False
-state = 0
+
+#Keep the lights off from the beginning
 GPIO.output(leds,False)
-try:
-    
+
+try:    
     while (True):
-#        sleep(0.2)
+        #sets each button as an input state
         input_state1 = GPIO.input(18)
         input_state2 = GPIO.input(23)
         input_state3 = GPIO.input(12)
         input_state4 = GPIO.input(21)
-#        print input_state1
-#        print input_state2
-#        print input_state3
-#        print input_state4 
+        #if the button is pressed the variable becomes true
+        #if the button is pressed or the variable is True, the next button becomes useful
+        #If a button is messed up in the sequence then should quit
         if (input_state1 | a):
             a = True
             if (input_state2 | b):
@@ -40,15 +52,11 @@ try:
                             GPIO.output(leds, True)
                         else:
                             print "messed up at d"
-                            #GPIO.output(leds,False)
                     else:
                         print"messed up at c"
-               #        GPIO.output(leds,False)
                 else:
                     print "messed up at b"
-             #      GPIO.output(leds,False)
             else:
                 print "messed up at a"
-            #   GPIO.output(leds,False)
 except:
     GPIO.cleanup()
